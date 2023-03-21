@@ -11,5 +11,5 @@ def matrix_shape(matrix):
     while type(matrix) != int:
         matrix_shape.append(len(matrix))
         matrix = matrix[0]
-    
+
     return matrix_shape
