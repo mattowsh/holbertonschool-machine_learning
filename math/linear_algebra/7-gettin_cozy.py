@@ -12,7 +12,8 @@ def cat_matrices2D(mat1, mat2, axis=0):
 
     # Add the new values as a new row => axis == 0
     if not axis:
-        return mat1 + mat2
+        if len(mat1) == len(mat2):
+            return mat1 + mat2
 
     # Add the new values as a new columns => axis == 1
     if axis == 1:
