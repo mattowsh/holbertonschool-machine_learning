@@ -11,7 +11,7 @@ def add_matrices2D(mat1, mat2):
         return
 
     result = []
-    if len(mat1) and len(mat1[0]):
+    if len(mat1) and len(mat2):
         for i in range(len(mat1)):
             new_row = []
             for j in range(len(mat1[0])):
