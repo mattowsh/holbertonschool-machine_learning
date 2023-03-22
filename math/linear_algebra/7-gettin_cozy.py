@@ -6,8 +6,8 @@ Task 7. Gettin' Cozy
 
 def cat_matrices2D(mat1, mat2, axis=0):
     """
-    Concatenates two matrices along a specific axis.
-    mat1 and mat2 are 2D matrices containing ints/floats
+    > Concatenates two matrices along a specific axis.
+    > mat1 and mat2 are 2D matrices containing ints/floats
     """
 
     # Add the new values as a new row => axis == 0

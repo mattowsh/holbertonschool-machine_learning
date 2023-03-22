@@ -6,8 +6,8 @@ Task 8. Ridin' Bareback
 
 def mat_mul(mat1, mat2):
     """
-    Performs matrix multiplication
-    mat1 and mat2 are 2D matrices containing ints/floats
+    > Performs matrix multiplication
+    > mat1 and mat2 are 2D matrices containing ints/floats
     """
 
     m1_rows, m1_cols = len(mat1), len(mat1[0])
