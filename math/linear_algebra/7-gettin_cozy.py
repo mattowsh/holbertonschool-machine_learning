@@ -11,14 +11,14 @@ def cat_matrices2D(mat1, mat2, axis=0):
     """
 
     # Add the new values as a new row => axis == 0
-    if not axis:
-        if len(mat1) == len(mat2):
-            return mat1 + mat2
+    # Important: check if the matrix have the same qty of columns
+    if not axis and len(mat1[0]) == len(mat2[0]):
+        return mat1 + mat2
 
     # Add the new values as a new columns => axis == 1
-    if axis == 1:
-        if len(mat1) == len(mat2):
-            result = []
-            result = [(mat1[i] + mat2[i]) for i in range(len(mat1))]
-            return result
+    # Important: check if the matrix have the same qty of rows
+    if axis == 1 and len(mat1) == len(mat2):
+        result = []
+        result = [(mat1[i] + mat2[i]) for i in range(len(mat1))]
+        return result
     return
