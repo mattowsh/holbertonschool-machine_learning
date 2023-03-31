@@ -15,23 +15,13 @@ def poly_derivative(poly):
         return [0]
 
     result = []
-    i = 1
-    try:
-        while i < len(poly):
-            result.append(i * poly[i])
-    except Exception:
-        return
-    
-    # for i in poly:
-    #     if type(i) != int:
-    #         return
+    for i in range(len(poly)):
+        if type(poly[i]) != int:
+            return
 
-    #     if poly.index(i) == 0:
-    #         continue
-    #     result.append(i * poly.index(i))
+        if i == 0:
+            continue
+        result.append(i * poly[i])
 
-    # Final returns:
-    if len(result) != 0:
-        return result
-    else:
-        return
+    ternary_result = result if len(result) != 0 else None
+    return ternary_result
