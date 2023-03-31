@@ -7,8 +7,6 @@ Task 10. Derivate of a polyomial
 def poly_derivative(poly):
     """Calculates the derivative of a polynomial"""
 
-    result = []
-    
     if type(poly) != list and type(poly) != tuple:
         return
 
@@ -16,13 +14,21 @@ def poly_derivative(poly):
     if len(poly) == 1:
         return [0]
 
-    for i in poly:
-        if type(i) != int:
-            return
+    result = []
+    i = 1
+    try:
+        while i < len(poly):
+            result.append(i * poly[i])
+    except Exception:
+        return
+    
+    # for i in poly:
+    #     if type(i) != int:
+    #         return
 
-        if poly.index(i) == 0:
-            continue
-        result.append(i * poly.index(i))
+    #     if poly.index(i) == 0:
+    #         continue
+    #     result.append(i * poly.index(i))
 
     # Final returns:
     if len(result) != 0:
