@@ -11,10 +11,15 @@ plt.xlabel("Grades")
 plt.ylabel("Number of Students")
 
 # Histogram:
-# bins = qty of columns
+# Setting axis:
+plt.xlim([0, 100])
+plt.ylim([0, 30])
+
+# bins = intervals along the x-axis that are used to group the data
 # edgecolor = border of each bar
-plt.xlim([0, 101])
-plt.ylim([0, 31])
-plt.hist(student_grades, bins=6, edgecolor="black")
+# xtricks = set the tick locations and labels of the x-axis
+bins = list(range(0, 110, 10))
+plt.xticks(bins)
+plt.hist(student_grades, bins=bins, edgecolor="black")
 
 plt.show()
