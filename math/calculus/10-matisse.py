@@ -25,4 +25,12 @@ def poly_derivative(poly):
         result.append(sub_result)
 
     # Final returns:
-    result if (len(result) != 0) else None
+    if len(result) != 0:
+        return result
+    else:
+        return
+
+
+if __name__ == "__main__":
+    poly = [5, 3, 0, 1]
+    print(poly_derivative(poly))
