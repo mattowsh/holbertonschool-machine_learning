@@ -19,11 +19,10 @@ def poly_derivative(poly):
         if type(i) != int:
             return
 
-        if poly.index(i) != 0:
-            sub_result = i * poly.index(i)
-            result.append(sub_result)
+        if poly.index(i) == 0:
+            continue
+        sub_result = i * poly.index(i)
+        result.append(sub_result)
 
-    if len(result) != 0:
-        return result
-    else:
-        return
+    # Final returns:
+    result if (len(result) != 0) else None
