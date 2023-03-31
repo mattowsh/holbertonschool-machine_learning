@@ -13,7 +13,7 @@ plt.xlabel("Time (years)")
 plt.ylabel("Fraction Remaining")
 
 # Line graph:
-plt.xlim([0, 28650])
+plt.xlim([0, 28651])
 plt.yscale("log")
 plt.plot(x, y)
 
