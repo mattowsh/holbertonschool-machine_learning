@@ -23,4 +23,7 @@ def poly_derivative(poly):
             sub_result = i * poly.index(i)
             result.append(sub_result)
 
-    return result
+    if len(result) != 0:
+        return result
+    else:
+        return
