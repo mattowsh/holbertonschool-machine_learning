@@ -77,6 +77,6 @@ bins = list(range(0, 110, 10))
 plt.xticks(bins)
 plt.hist(student_grades, bins=bins, edgecolor="black")
 
-
-plt.tight_layout() # Automatically adjusts the spacing between subplots
+# Automatically adjusts the spacing between subplots:
+plt.tight_layout()
 plt.show()
