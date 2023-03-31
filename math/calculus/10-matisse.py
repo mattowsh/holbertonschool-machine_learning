@@ -7,7 +7,7 @@ Task 10. Derivate of a polyomial
 def poly_derivative(poly):
     """Calculates the derivative of a polynomial"""
 
-    if type(poly) != list:
+    if type(poly) != list and type(poly) != tuple:
         return
 
     # Derivate of a int == 0, always cte.
