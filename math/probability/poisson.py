@@ -29,7 +29,7 @@ class Poisson():
 
         if type(k) != int:
             self.k = int(k)
-        elif k < 0:
+        if k < 0:
             return 0
 
         # Define constans in function to PMF equation:
