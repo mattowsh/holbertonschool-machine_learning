@@ -53,24 +53,21 @@ class Poisson():
             k = int(k)
         if k < 0:
             return 0
-        
+
         # Define constans in function to CDF equation:
         e = 2.7182818285
         lambtha = self.lambtha
-        j, i = 0, 1
+        subproduct, j = 0, 0
 
         # Calculates CDF value for k:
-        cdf_result = 0
         while (j <= k):
             i, i_factorial = 1, 1
             while (i <= j):
                 i_factorial *= i
                 i += 1
 
-            cdf_result += (((e ** (-lambtha)) * (lambtha ** k)) / i_factorial)
-        return cdf_result
-    
+            subproduct += ((lambtha ** j) / i_factorial)
+            j += 1
 
-if __name__ == '__main__':
-    p2 = Poisson(lambtha=5)
-    print('F(9):', p2.cdf(9))
+        cdf_result = (e ** (-1 * lambtha)) * subproduct
+        return cdf_result
