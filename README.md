@@ -2,8 +2,6 @@
     <img src="./readme-images/banner2.png"></img>
 </div>
 
-<br>
-
 # <img src="https://holberton.anahuac.mx/wp-content/uploads/ddd-1024x1024.png" width= 4%> **Machine Learning SPE**
 
 `Type of files:` tasks and projects
