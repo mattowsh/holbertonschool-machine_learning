@@ -23,3 +23,25 @@ class Poisson():
             else:
                 # lambtha == mean of data:
                 self.lambtha = float(sum(data) / len(data))
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of “successes”"""
+
+        if type(k) != int:
+            self.k = int(k)
+        elif k < 0:
+            return 0
+
+        # Define constans in function to PMF equation:
+        e = 2.7182818285
+        lambtha = self.lambtha
+        i, k_factorial = 1, 1
+
+        # Calculates k!:
+        while (i <= k):
+            k_factorial *= i
+            i += 1
+
+        # Calculates PMF value for k:
+        pmf_value = (lambtha ** k) * (e ** (-lambtha)) / k_factorial
+        return pmf_value
