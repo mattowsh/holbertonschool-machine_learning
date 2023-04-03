@@ -1,4 +1,4 @@
-# <a> <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png" alt="Matlab logo" width=4.5%></img></a> **ML SPE: Math**
+# <a> <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png" alt="Matlab logo" width=4%></img></a> **ML SPE: Math**
 
 `Topic:` **math**
 
