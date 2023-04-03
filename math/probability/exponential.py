@@ -24,3 +24,16 @@ class Exponential():
             else:
                 # lambda == inverse of the mean
                 self.lambtha = float(1 / (sum(data) / len(data)))
+
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given time period"""
+
+        if x < 0:
+            return 0
+
+        # Define constants in function to PMF equation:
+        e = 2.7182818285
+        lambtha = self.lambtha
+
+        # Calculates PMF value for x:
+        return (lambtha * (e ** (-lambtha * x)))

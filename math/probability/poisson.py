@@ -32,7 +32,7 @@ class Poisson():
         if k < 0:
             return 0
 
-        # Define constans in function to PMF equation:
+        # Define constants in function to PMF equation:
         e = 2.7182818285
         lambtha = self.lambtha
         i, k_factorial = 1, 1
