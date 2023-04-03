@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./readme-images/banner2.png"></img>
+    <img src="./readme-images/banner2.jpg"></img>
 </div>
 
 # <img src="https://holberton.anahuac.mx/wp-content/uploads/ddd-1024x1024.png" width= 4%> **Machine Learning SPE**
