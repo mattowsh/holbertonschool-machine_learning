@@ -1,6 +1,8 @@
 <div align="center">
-    <img src="https://t4.ftcdn.net/jpg/03/67/70/81/360_F_367708159_P5d3xDsv9vnA4ifW0HFtl9QyoYL9CAUS.jpg"></img>
+    <img src="./readme-images/banner2.png"></img>
 </div>
+
+<br>
 
 # <img src="https://holberton.anahuac.mx/wp-content/uploads/ddd-1024x1024.png" width= 4%> **Machine Learning SPE**
 
@@ -17,11 +19,11 @@ Continuous update :)
 
 <a href="https://www.python.org/"><img src="https://i.pinimg.com/originals/95/91/ed/9591ed82caa8d20c30db96cb7298d3a9.png" width=4%></img></a>
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" width=1%></img>
-<a href="https://numpy.org/"><img src="https://seeklogo.com/images/N/numpy-logo-479C24EC79-seeklogo.com.png" width=4%></img>
+<a href="https://numpy.org/"><img src="https://seeklogo.com/images/N/numpy-logo-479C24EC79-seeklogo.com.png" width=4%></img></a>
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" width=1%></img>
-<a href="https://matplotlib.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Created_with_Matplotlib-logo.svg/2048px-Created_with_Matplotlib-logo.svg.png" width=4%></img>
+<a href="https://matplotlib.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Created_with_Matplotlib-logo.svg/2048px-Created_with_Matplotlib-logo.svg.png" width=4%></img></a>
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" width=1%></img>
-<a href="https://jupyter.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png" width=4%></img>
+<a href="https://jupyter.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png" width=4%></img></a>
 
 ## Curriculum
 Continuous update :)
