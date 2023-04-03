@@ -1,13 +1,5 @@
 # <a><img src="https://seeklogo.com/images/N/numpy-logo-479C24EC79-seeklogo.com.png" width=4%></img></a> **Linear Algebra**
 
-`Topic:` **math**
-
-`Type of files:` tasks and projects
-
-`Career:` **Machine Learning specialization**, 1st trimester
-
-`Location:` Holberton School
-
 ## Curriculum
 - What is a vector?
 - What is a matrix?

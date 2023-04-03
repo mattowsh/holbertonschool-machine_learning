@@ -1,13 +1,5 @@
 # <a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Created_with_Matplotlib-logo.svg/2048px-Created_with_Matplotlib-logo.svg.png" width=4%></img></a> **Plotting**
 
-`Topic:` **math**
-
-`Type of files:` tasks and projects
-
-`Career:` **Machine Learning specialization**, 1st trimester
-
-`Location:` Holberton School
-
 ## Curriculum
 - What is a plot?
 - What is a scatter plot? line graph? bar graph? histogram?
