@@ -31,9 +31,20 @@ class Exponential():
         if x < 0:
             return 0
 
-        # Define constants in function to PMF equation:
         e = 2.7182818285
         lambtha = self.lambtha
 
-        # Calculates PMF value for x:
+        # PMF formula:
         return (lambtha * (e ** (-lambtha * x)))
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given time period"""
+
+        if x < 0:
+            return 0
+
+        e = 2.7182818285
+        lambtha = self.lambtha
+
+        # CDF formula:
+        return (1 - (e ** (-lambtha * x)))
