@@ -4,6 +4,17 @@ Normal distribution
 """
 
 
+def er(x):
+    """
+    Calculates the error, necessary to calculate the cumulative
+    distribution function of a normal distribution
+    """
+
+    pi_square_root = 3.1415926536 ** 0.5
+    x_sum = x - ((x ** 3)/3) + ((x ** 5)/10) - ((x ** 7)/42) + ((x ** 9)/216)
+    return ((2 * x_sum) / pi_square_root)
+
+
 class Normal():
     """Class that represents a normal distribution"""
 
@@ -44,8 +55,16 @@ class Normal():
 
         pi = 3.1415926536
         e = 2.7182818285
-        mean = self.mean
-        stddev = self.stddev
+        mean, stddev = self.mean, self.stddev
+
 
         e_exponent = (((x - mean) / stddev) ** 2) * (-0.5)
         return ((e ** e_exponent) / (stddev * ((2 * pi) ** 0.5)))
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value"""
+
+        mean, stddev = self.mean, self.stddev
+
+        param = (x - mean) / (stddev * (2 ** 0.5))
+        return ((1 + er(param)) * 0.5)
