@@ -38,3 +38,14 @@ class Normal():
     def x_value(self, z):
         """Calculates the x-value of a given z-score"""
         return (self.mean + (z * self.stddev))
+
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given x-value"""
+
+        pi = 3.1415926536
+        e = 2.7182818285
+        mean = self.mean
+        stddev = self.stddev
+
+        e_exponent = (((x - mean) / stddev) ** 2) * (-0.5)
+        return ((e ** e_exponent) / (stddev * ((2 * pi) ** 0.5)))
