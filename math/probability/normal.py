@@ -57,14 +57,11 @@ class Normal():
         e = 2.7182818285
         mean, stddev = self.mean, self.stddev
 
-
         e_exponent = (((x - mean) / stddev) ** 2) * (-0.5)
         return ((e ** e_exponent) / (stddev * ((2 * pi) ** 0.5)))
 
     def cdf(self, x):
         """Calculates the value of the CDF for a given x-value"""
 
-        mean, stddev = self.mean, self.stddev
-
-        param = (x - mean) / (stddev * (2 ** 0.5))
+        param = (x - self.mean) / (self.stddev * (2 ** 0.5))
         return ((1 + er(param)) * 0.5)
