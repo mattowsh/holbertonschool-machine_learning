@@ -46,10 +46,10 @@ class Binomial():
     def pmf(self, k):
         """Calculates the value of the PMF for a given number of “successes”"""
 
+        if k < 0:
+            return 0
         if type(k) != int:
             k = int(k)
-        elif k < 0:
-            return 0
 
         n, p = self.n, self.p
         nk = (factorial(n)) / (factorial(k) * factorial(n - k))
