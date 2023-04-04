@@ -4,6 +4,14 @@ Binomial distribution
 """
 
 
+def factorial(n):
+    """Calculates the factorial of any n: n!"""
+    n_factorial = 1
+    for i in range(1, n + 1):
+        n_factorial *= i
+    return n_factorial
+
+
 class Binomial():
     """Class that represent a binomial distribution"""
 
@@ -34,3 +42,15 @@ class Binomial():
                 self.n = round(mean / (-(variance/mean) + 1))
                 # p == qty successes / qty of trials (n)
                 self.p = mean / self.n
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of “successes”"""
+
+        if type(k) != int:
+            k = int(k)
+        elif k < 0:
+            return 0
+
+        n, p = self.n, self.p
+        nk = (factorial(n)) / (factorial(k) * factorial(n - k))
+        return (nk * (p ** k) * ((1 - p) ** (n - k)))
