@@ -35,3 +35,16 @@ class Neuron():
     def A(self):
         """Private A attribute getter function"""
         return self.__A
+
+    def forward_prop(self, X):
+        """
+        Calculates the fôrward propagation of the neuron.
+
+            X: a numpy.ndarray with shape (nx, m) that contains the input data
+            nx: number of input features to the neuron
+            m: number of examples
+        """
+
+        matrix_result = np.matmul(self.__W, X) + self.__b
+        self.__A = 1 / (1 + np.exp(-matrix_result))
+        return self.__A
