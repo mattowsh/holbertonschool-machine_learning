@@ -74,13 +74,7 @@ class Neuron():
             for the input data
         """
 
-        predicted_values = self.forward_prop(X)
-        cost = self.cost(Y, predicted_values)
+        predictions = self.forward_prop(X)
+        cost = self.cost(Y, predictions)
 
-        for i in range(len(predicted_values)):
-            if predicted_values[i] >= 0.5:
-                predicted_values[i] == 1
-            else:
-                predicted_values[i] == 0
-
-        return predicted_values, cost
+        return np.round(predictions).astype(int), cost
