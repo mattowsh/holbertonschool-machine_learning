@@ -17,10 +17,21 @@ class Neuron():
             raise ValueError("nx must be a positive integer")
         else:
             self.nx = nx
+            self.__W = np.random.normal(size=(1, nx))
+            self.__b = 0
+            self.__A = 0
 
-            # The weights vector for the neuron
-            self.W = np.random.normal(size=(1, nx))
-            # The bias for a neuron
-            self.b = 0
-            # The activated output of the neuron (prediction)
-            self.A = 0
+    @property
+    def W(self):
+        """Private W attribute getter function"""
+        return self.__W
+
+    @property
+    def b(self):
+        """Private b attribute getter function"""
+        return self.__b
+
+    @property
+    def A(self):
+        """Private A attribute getter function"""
+        return self.__A
