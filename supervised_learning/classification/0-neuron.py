@@ -6,7 +6,7 @@ import numpy as np
 
 
 class Neuron():
-    """Defines a single neuron performing binary classification"""
+    """Defines a single neuron perfôrming binary classification"""
 
     def __init__(self, nx):
         """Class constructor"""
