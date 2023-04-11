@@ -18,9 +18,9 @@ class Neuron():
         else:
             self.nx = nx
 
-            # The weights vector for the neuron
+            # Weights vector
             self.W = np.random.normal(size=(1, nx))
-            # The bias for a neuron
+            # Bias
             self.b = 0
             # The activated output of the neuron (prediction)
             self.A = 0
