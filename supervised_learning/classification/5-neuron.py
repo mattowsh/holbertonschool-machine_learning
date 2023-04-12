@@ -77,4 +77,4 @@ class Neuron():
         predictions = self.forward_prop(X)
         cost = self.cost(Y, predictions)
 
-        return np.round(predictions), cost
+        return np.round(predictions).astype(int), cost
