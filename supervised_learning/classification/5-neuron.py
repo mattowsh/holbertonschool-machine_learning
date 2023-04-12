@@ -78,3 +78,25 @@ class Neuron():
         cost = self.cost(Y, predictions)
 
         return np.round(predictions).astype(int), cost
+    
+    def gradient_descent(self, X, Y, A, alpha=0.05):
+        """
+        Calculates one pass of gradient descent on the neuron
+
+            X: numpy.ndarray with shape (nx, m), contains the input data
+            Y: numpy.ndarray with shape (1, m), contains the correct labels
+            for the input data
+            A: numpy.ndarray with shape (1, m) containing the activated output
+            of the neuron for each example
+            alpha: learning rate
+        """
+
+        # We use the backward algorithm:
+        error = A - Y
+        new_w = np.matmul(error, X.T) / X.shape[1]
+        new_b = np.sum(error) / X.shape[1]
+
+        # Update the parameters:
+        self.__W = self.__W - alpha * new_w
+        self.__b = self.__b - alpha * new_b
+        print(self.__b)
