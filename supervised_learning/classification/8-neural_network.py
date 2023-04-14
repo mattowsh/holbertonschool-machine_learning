@@ -25,11 +25,12 @@ class NeuralNetwork:
         elif nodes < 1:
             raise ValueError("nodes must be a positive integer")
 
-        # 1st neuron attributes:
-        self.W1 = np.random.normal(size=(1, nx))
+        # Hidden layer > neuron attributes:
+        self.W1 = np.random.normal(size=(nx, nodes))
         self.b1 = 0
         self.A1 = 0
-        # 2nd neuron attributes:
-        self.W2 = np.random.normal(size=(1, nx))
+        # Output layer > neuron attributes:
+        # The 1 in size: correspond to the qty of output neurons:
+        self.W2 = np.random.normal(size=(1, nodes))
         self.b2 = 0
         self.A2 = 0
