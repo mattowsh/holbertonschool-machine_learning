@@ -10,10 +10,12 @@ class NeuralNetwork:
     binary classification"""
 
     def __init__(self, nx, nodes):
-        """Constructor class
+        """
+        Constructor class
 
             nx: number of input features
-            nodes: number of nodes in the hidden layer"""
+            nodes: number of nodes in the hidden layer
+        """
 
         # Parameters validation:
         if type(nx) != int:
@@ -24,7 +26,7 @@ class NeuralNetwork:
             raise TypeError("nodes must be an integer")
         elif nodes < 1:
             raise ValueError("nodes must be a positive integer")
-        
+
         # Hidden layer > neuron attributes:
         self.W1 = np.random.normal(size=(nodes, nx))
         self.b1 = np.zeros((nodes, 1))
