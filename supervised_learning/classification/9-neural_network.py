@@ -63,6 +63,6 @@ class NeuralNetwork:
         return self.__b2
 
     @property
-    def A3(self):
+    def A2(self):
         """Private A1 attribute getter function"""
         return self.__A2
