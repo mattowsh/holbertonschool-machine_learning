@@ -26,7 +26,7 @@ class NeuralNetwork:
             raise ValueError("nodes must be a positive integer")
 
         # Hidden layer > neuron attributes:
-        self.W1 = np.random.normal(size=(nx, nodes))
+        self.W1 = np.random.normal(size=(nodes, nx))
         self.b1 = 0
         self.A1 = 0
         # Output layer > neuron attributes:
