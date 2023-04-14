@@ -20,17 +20,17 @@ class NeuralNetwork:
             raise TypeError("nx must be an integer")
         elif nx < 1:
             raise ValueError("nx must be a positive integer")
-        if type(nodes) != int:
+        elif type(nodes) != int:
             raise TypeError("nodes must be an integer")
         elif nodes < 1:
             raise ValueError("nodes must be a positive integer")
-
-        # Hidden layer > neuron attributes:
-        self.W1 = np.random.normal(size=(nodes, nx))
-        self.b1 = 0
-        self.A1 = 0
-        # Output layer > neuron attributes:
-        # The 1 in size: correspond to the qty of output neurons:
-        self.W2 = np.random.normal(size=(1, nodes))
-        self.b2 = 0
-        self.A2 = 0
+        else:
+            # Hidden layer > neuron attributes:
+            self.W1 = np.random.normal(size=(nodes, nx))
+            self.b1 = 0
+            self.A1 = 0
+            # Output layer > neuron attributes:
+            # The 1 in size: correspond to the qty of output neurons:
+            self.W2 = np.random.normal(size=(1, nodes))
+            self.b2 = 0
+            self.A2 = 0
