@@ -187,7 +187,7 @@ class NeuralNetwork:
         elif alpha <= 0:
             raise ValueError("alpha must be positive")
 
-        # Training loop for all neurons, all layers:
+        # Training loop f0r all neurons, all layers:
         for i in range(iterations):
             A1, A2 = self.forward_prop(X)
 
