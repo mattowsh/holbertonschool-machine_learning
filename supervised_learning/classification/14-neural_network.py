@@ -196,4 +196,5 @@ class NeuralNetwork:
             self.gradient_descent(X, Y, A1, A2, alpha)
 
         # Final return: evaluation of the model performance:
-        return self.evaluate(X, Y)
+        predictions, cost = self.evaluate(X, Y)
+        return predictions, cost
