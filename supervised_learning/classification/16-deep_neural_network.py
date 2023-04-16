@@ -30,9 +30,9 @@ class DeepNeuralNetwork():
 
         for i in range(1, len(layers)):
             # Last validation:
-            if type(layers[i]) != int:
+            if type(layers[i]) != int or layers[i] < 0:
                 raise TypeError("layers must be a list of positive integers")
-            
+
             # He et al. initialization:
             he_init = np.sqrt(2 / layers[i - 1])
 
