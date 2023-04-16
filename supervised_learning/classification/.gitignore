@@ -1,1 +1,5 @@
 *main.py
+
+# Jupyter automatic files:
+.ipynb_checkpoints
+*.ipynb

@@ -6,6 +6,7 @@ Tasks: Neural Network
     A: activated output of the neuron (prediction)
 """
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class NeuralNetwork:
@@ -169,12 +170,16 @@ class NeuralNetwork:
         self.__W1 -= alpha * weights_hidden
         self.__b1 -= alpha * bias_hidden
 
-    def train(self, X, Y, iterations=5000, alpha=0.05):
+    def train(self, X, Y, iterations=500, alpha=0.05, verbose=True, graph=True, step=100):
         """
         Trains the neural network
 
             iterations: number of iterations to train over
             alpha: learning rate
+            verbose: boolean, defines whether or not to print information about
+            the training
+            graph: boolean, defines whether or not to graph information about
+            the training once the training has completed
         """
 
         # Parameter validations:
@@ -188,12 +193,31 @@ class NeuralNetwork:
             raise ValueError("alpha must be positive")
 
         # Training loop f0r all neurons, all layers:
-        for i in range(iterations):
+        steps, costs = [], []
+        for i in range(iterations + 1):
             A1, A2 = self.forward_prop(X)
 
             # Update W and b in function to the product of the model train
             # implement backpropagation:
-            self.gradient_descent(X, Y, A1, A2, alpha)
+            if i < iterations:
+                self.gradient_descent(X, Y, A1, A2, alpha)
+
+            # Create the necessary arrays to create the chart:
+            # Calculate costs only just each "step" steps, this avoid us
+            # use plt.xticks in the chart construction:
+            if i % step == 0:
+                steps.append(i)
+                costs.append(self.cost(Y, A2))
+                if verbose:
+                    print("Cost after {} iterations: {}".
+                          format(i, self.cost(Y, A2)))
+        if graph:
+            plt.title("Training Cost")
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+
+            plt.plot(steps, costs)
+            plt.show()
 
         # Final return: evaluation of the model performance:
         return self.evaluate(X, Y)
