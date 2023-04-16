@@ -21,20 +21,18 @@ class DeepNeuralNetwork():
         if type(layers) != list or len(layers) == 0:
             raise TypeError("layers must be a list of positive integers")
 
-        # Check if all elements are positive integers:
-        # Status true if any value in layers is <= 0:
-        status = any(i <= 0 for i in layers)
-        if status:
-            raise TypeError("layers must be a list of positive integers")
-
         # Number of layers in the neural network:
         self.L = len(layers)
-        # A dictionary to hold all intermediary values of the network:
+        # A dict to hold all intermediary values of the network:
         self.cache = {}
-        # A dictionary to hold all weights and biased of the network:
+        # A dict to hold all weights and biases of the network:
         self.weights = {}
 
         for i in range(1, len(layers)):
+            # Last validation:
+            if type(layers[i]) != int:
+                raise TypeError("layers must be a list of positive integers")
+            
             # He et al. initialization:
             he_init = np.sqrt(2 / layers[i - 1])
 
