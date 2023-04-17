@@ -42,5 +42,5 @@ class DeepNeuralNetwork():
             bi = np.zeros((layers[i], 1))
 
             # Set the values in weights dict:
-            self.weights["W{}".format(i)] = Wi
-            self.weights["b{}".format(i)] = bi
+            self.weights["W{}".format(i + 1)] = Wi
+            self.weights["b{}".format(i + 1)] = bi
