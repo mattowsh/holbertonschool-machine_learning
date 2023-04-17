@@ -60,7 +60,7 @@ class DeepNeuralNetwork():
     def weights(self):
         """Private weights attribute getter function"""
         return self.__weights
-    
+
     def sigmoid(self, X):
         """Sigmoid activation function"""
         return (1 / (1 + np.exp(-X)))
@@ -68,7 +68,7 @@ class DeepNeuralNetwork():
     def forward_prop(self, X):
         """
         Calculates the forward propagation of the neural network
-        
+
                 X: numpy.ndarray with shape (nx, m), contains the input data
                     nx: number of input features to the neuron
                     m: number of examples
@@ -77,12 +77,12 @@ class DeepNeuralNetwork():
         cache, weights = self.__cache, self.__weights
         cache["A0"] = X
         for i in range(self.__L):
-            Wi = "W{}".format(i + 1)
-            bi = "b{}".format(i + 1)
-            Ai = "A{}".format(i + 1) if i != 0 else "A0"
+            Wi, bi = "W{}".format(i + 1), "b{}".format(i + 1)
+            Ai, A_next = "A{}".format(i), "A{}".format(i + 1)
 
             # Weighted sum of the inputs, f0r each neuron:
-            sum_weights = np.matmul(weights[Wi], cache[Ai]) + cache[bi]
-            cache[Ai] = sum_weights
+            sum_weights = np.matmul(weights[Wi], cache[Ai]) + weights[bi]
+            # Set each A value in cache using sigmoid activation function:
+            cache[A_next] = self.sigmoid(sum_weights)
 
-        return cache[Ai], cache
+        return cache[A_next], cache
