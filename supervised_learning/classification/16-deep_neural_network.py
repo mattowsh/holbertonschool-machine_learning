@@ -28,7 +28,7 @@ class DeepNeuralNetwork():
         # A dict to hold all weights and biases of the network:
         self.weights = {}
 
-        for i in range(1, len(layers)):
+        for i in range(len(layers)):
             # Last validation:
             if type(layers[i]) != int or layers[i] < 0:
                 raise TypeError("layers must be a list of positive integers")
@@ -37,7 +37,8 @@ class DeepNeuralNetwork():
             he_init = np.sqrt(2 / layers[i - 1])
 
             # Get weights and bias randomly:
-            Wi = np.random.randn(layers[i], layers[i - 1]) * he_init
+            columns = layers[i - 1] if i > 0 else nx
+            Wi = np.random.randn(layers[i], columns) * he_init
             bi = np.zeros((layers[i], 1))
 
             # Set the values in weights dict:
