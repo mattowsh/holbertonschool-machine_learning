@@ -33,11 +33,12 @@ class DeepNeuralNetwork():
             if type(layers[i]) != int or layers[i] < 0:
                 raise TypeError("layers must be a list of positive integers")
 
+            columns = layers[i - 1] if i > 0 else nx
+
             # He et al. initialization:
-            he_init = np.sqrt(2 / layers[i - 1])
+            he_init = np.sqrt(2 / columns)
 
             # Get weights and bias randomly:
-            columns = layers[i - 1] if i > 0 else nx
             Wi = np.random.randn(layers[i], columns) * he_init
             bi = np.zeros((layers[i], 1))
 
