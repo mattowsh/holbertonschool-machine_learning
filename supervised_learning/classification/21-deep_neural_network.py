@@ -146,7 +146,7 @@ class DeepNeuralNetwork():
             Ai = "A{}".format(i - 1)
 
             # Calculate the gradient of bias:
-            bias_gradient = np.sum(error) / qty_examples
+            bias_gradient = np.sum(error, axis=1, keepdims=True)/qty_examples
 
             # Calculate the gradient of the weights:
             weights_gradient = np.matmul(error, cache[Ai].T) / qty_examples
