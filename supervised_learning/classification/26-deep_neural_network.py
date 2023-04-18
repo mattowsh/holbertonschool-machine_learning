@@ -221,7 +221,6 @@ class DeepNeuralNetwork():
 
         if filename.endswith(".pkl") == 0:
             filename += ".pkl"
-        print(filename)
 
         # Write the file, use 'wb' for writing in binary mode:
         with open(filename, "wb") as file:
@@ -231,6 +230,9 @@ class DeepNeuralNetwork():
     def load(filename):
         """Loads a pickled DeepNeuralNetwork object"""
 
-        # Open the file, use 'rb' for reading in binary mode:
-        with open(filename, "rb") as file:
-            return pickle.load(file)
+        try:
+            # Open the file, use 'rb' for reading in binary mode:
+            with open(filename, "rb") as file:
+                return pickle.load(file)
+        except Exception as e:
+            return None
