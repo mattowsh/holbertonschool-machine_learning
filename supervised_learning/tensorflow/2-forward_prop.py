@@ -20,7 +20,9 @@ def forward_prop(x, layer_sizes=[], activations=[]):
     """
 
     for i in range(len(layer_sizes)):
-        placeholder = x if i == 0 else placeholder
-        new_layer = create_layer(placeholder, layer_sizes[i], activations[i])
+        if i == 0:
+            new_layer = create_layer(x, layer_sizes[i], activations[i])
+        else:
+            new_layer = create_layer(new_layer, layer_sizes[i], activations[i])
 
     return new_layer
