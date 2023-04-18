@@ -183,8 +183,6 @@ class DeepNeuralNetwork():
             raise ValueError("alpha must be positive")
         if type(step) != int:
             raise TypeError("step must be an integer")
-        elif step < 1 or step > iterations:
-            raise ValueError("step must be positive and <= iterations")
 
         # Training loop f0r all neurons, all layers:
         costs, steps = [], []
