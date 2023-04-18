@@ -63,7 +63,7 @@ class DeepNeuralNetwork():
     def cache(self):
         """Private cache attribute getter function"""
         return self.__cache
-    
+
     @property
     def activation(self):
         """Private activation attribute getter function"""
@@ -74,13 +74,14 @@ class DeepNeuralNetwork():
         """Private weights attribute getter function"""
         return self.__weights
 
-    def sigmoid(self, Z):
-        """Sigmoid activation function"""
-        return (1 / (1 + np.exp(-Z)))
-    
-    def tanh(self, Z):
-        """Tanh activation function"""
-        return ((2 / (1 + np.exp(-2 * Z))) - 1)
+    def activation_func(self, Z):
+        """Activation functions"""
+        if self.__activation == "sig":
+            # Sigmoid activation function
+            return (1 / (1 + np.exp(-Z)))
+        else:
+            # Tanh activation function
+            return (np.exp(Z)-np.exp(-Z))/(np.exp(Z)+np.exp(-Z))
 
     def forward_prop(self, X):
         """
@@ -100,10 +101,7 @@ class DeepNeuralNetwork():
             # Weighted sum of the inputs, f0r each neuron:
             sum_weights = np.matmul(weights[Wi], cache[Ai]) + weights[bi]
             # Set each A value in cache using activation function:
-            if self.__activation is "sig":
-                cache[A_next] = self.sigmoid(sum_weights)
-            else:
-                cache[A_next] = self.tanh(sum_weights)
+            cache[A_next] = self.activation_func(sum_weights)
 
         return cache[A_next], cache
 
@@ -171,8 +169,14 @@ class DeepNeuralNetwork():
             # Calculate the gradient of the weights:
             weights_gradient = np.matmul(error, cache[Ai].T) / qty_examples
 
+            # Set corretly the factor of mult, in function to activation func:
+            if self.__activation == "sig":
+                factor = cache[Ai]*(1-cache[Ai])
+            else:
+                factor = 1 - (cache[Ai] ** 2)
+
             # Update error in each layer:
-            error = np.matmul(weights[Wi].T, error)*(cache[Ai]*(1-cache[Ai]))
+            error = np.matmul(weights[Wi].T, error) * factor
 
             # Update the parameters:
             weights[Wi] -= alpha * weights_gradient
