@@ -23,7 +23,7 @@ def one_hot_decode(one_hot):
 
         # Calculate the one-hot decode vector for each class:
         pre_decode = (one_hot.T * classes).T
-        
+
         # Sum each pre-decode row to the base np.array that we created:
         for i in pre_decode:
             decoded_matrix += i
