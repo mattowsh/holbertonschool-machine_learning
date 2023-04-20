@@ -14,5 +14,5 @@ def calculate_accuracy(y, y_pred):
     """
 
     # Calculate softmax cross-entropy loss:
-    cross_e = tf.losses.softmax_cross_entropy(y, logits=y_pred)
+    cross_e = tf.losses.softmax_cross_entropy(labels=y, logits=y_pred)
     return cross_e
