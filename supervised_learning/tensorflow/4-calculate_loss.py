@@ -5,7 +5,7 @@ Task 4. Loss
 import tensorflow as tf
 
 
-def calculate_accuracy(y, y_pred):
+def calculate_loss(y, y_pred):
     """
     Calculates the softmax cross-entropy loss of a prediction
 
@@ -14,5 +14,5 @@ def calculate_accuracy(y, y_pred):
     """
 
     # Calculate softmax cross-entropy loss:
-    ce_loss = tf.losses.softmax_cross_entropy(onehot_labels=y, logits=y_pred)
-    return ce_loss
+    cross_e = tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=y_pred)
+    return tf.reduce_mean(cross_e)
