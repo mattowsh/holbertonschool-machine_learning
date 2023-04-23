@@ -28,9 +28,6 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
         save_path: file to save the model
     """
 
-    # Clear the previous TensorFlow graph to reset it:
-    # tf.reset_default.graph()
-
     # Set the input and output placeholders:
     X, Y = create_placeholders(X_train.shape[1], Y_train.shape[1])
 
@@ -77,5 +74,6 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
 
         # Save the trained model using a TensorFlow Saver object:
         saver = tf.train.Saver()
+        save_path = saver.save(sess, save_path)
 
-    return saver.save(sess, save_path)
+    return save_path
