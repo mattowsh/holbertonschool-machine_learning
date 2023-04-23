@@ -3,6 +3,7 @@
 Task 6. Train_Op
 """
 import tensorflow as tf
+
 # Import previos functions:
 calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
 calculate_loss = __import__('4-calculate_loss').calculate_loss
@@ -27,11 +28,8 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
         save_path: file to save the model
     """
 
-    # Initialize TensorFlow's random seed to a fixed value:
-    tf.set_random_seed(0)
-
     # Clear the previous TensorFlow graph to reset it:
-    tf.reset_default.graph()
+    # tf.reset_default.graph()
 
     # Set the input and output placeholders:
     X, Y = create_placeholders(X_train.shape[1], Y_train.shape[1])
@@ -48,8 +46,8 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
 
     # New TensorFlow session + initialization of variables:
     init = tf.global_variables_initializer()
-    with tf.Session() as s:
-        s.run(init)
+    with tf.Session() as sess:
+        sess.run(init)
 
         # Simplify the access of essential variables in our graph's
         # collection:
@@ -62,9 +60,9 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
 
         # Train the model:
         for i in range(iterations + 1):
-            cost_train, acc_train = s.run(
+            cost_train, acc_train = sess.run(
                 [loss, accuracy], feed_dict={X: X_train, Y: Y_train})
-            cost_valid, acc_valid = s.run(
+            cost_valid, acc_valid = sess.run(
                 [loss, accuracy], feed_dict={X: X_valid, Y: Y_valid})
 
             if i % 100 == 0 or i == iterations:
@@ -75,10 +73,9 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
                 print("\tValidation Accuracy: {}".format(acc_valid))
 
             if i < iterations:
-                s.run(train_op, feed_dict={X: X_train, Y: Y_train})
+                sess.run(train_op, feed_dict={X: X_train, Y: Y_train})
 
         # Save the trained model using a TensorFlow Saver object:
-        save_model = tf.train.Saver()
-        save_path = save_model.save(s, save_path)
+        saver = tf.train.Saver()
 
-    return save_path
+    return saver.save(sess, save_path)
