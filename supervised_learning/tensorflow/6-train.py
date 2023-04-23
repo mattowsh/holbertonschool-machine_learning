@@ -76,6 +76,6 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
 
         # Save the trained model using a TensorFlow Saver object:
         save_model = tf.train.Saver()
-        final_path = save_model.save(s, final_path)
+        save_path = save_model.save(s, save_path)
 
-    return final_path
+    return save_path
