@@ -27,6 +27,9 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
         save_path: file to save the model
     """
 
+    # Initialize TensorFlow's random seed to a fixed value:
+    tf.set_random_seed(0)
+
     # Clear the previous TensorFlow graph to reset it:
     tf.reset_default.graph()
 
