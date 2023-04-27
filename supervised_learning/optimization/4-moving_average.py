@@ -3,7 +3,6 @@
 Task 4. Moving Average
 """
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def moving_average(data, beta):
