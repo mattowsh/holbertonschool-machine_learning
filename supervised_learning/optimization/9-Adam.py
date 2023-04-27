@@ -32,3 +32,6 @@ def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
     # Update the variable:
     all_bias = fst_bias_correction / (np.sqrt(snd_bias_correction) + epsilon)
     updated_value = var - (alpha * all_bias)
+
+    # Final return:
+    return updated_value, fst_momentum, snd_momentum
