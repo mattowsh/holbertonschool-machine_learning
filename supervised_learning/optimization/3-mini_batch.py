@@ -48,15 +48,8 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
         # train_op = tf.get_collection("")[0]
         
         for e in tf.get_collection(c):
-        print(f"\t{e.name}")
+        	print("\t{}".format(e.name))
         
-if __name__ == "__main__":
-      #!/usr/bin/env python3
-
-import numpy as np
-import tensorflow as tf
-train_mini_batch = __import__('3-mini_batch').train_mini_batch
-
 def one_hot(Y, classes):
     """convert an array to a one-hot matrix"""
     oh = np.zeros((Y.shape[0], classes))
