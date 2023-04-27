@@ -31,6 +31,11 @@ Continuous update :)
     - Calculus
     - Probability
 
+- Supervised learning
+	- Classification
+	- TensorFlor
+	- Optimization
+
 <hr><br>
 <div align="center">
     <img src="https://apply.holbertonschool.com/holberton-logo.png" alt="Holberton logo" width=15%></img>

@@ -15,7 +15,7 @@
 
 <hr><br>
 <div align="center">
-    <img src="https://apply.holbertonschool.com/holberton-logo.png" alt="Holberton logo" width=15%></img>
+	<img src="https://apply.holbertonschool.com/holberton-logo.png" alt="Holberton logo" width=15%></img>
 </div>
 
 <p align="center">Montevideo, Uruguay | 2023</p>

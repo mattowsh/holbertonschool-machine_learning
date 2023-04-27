@@ -11,6 +11,7 @@
 ## Curriculum
 - Classification
 - TensorFlow
+- Optimization
 
 <hr><br>
 <div align="center">
