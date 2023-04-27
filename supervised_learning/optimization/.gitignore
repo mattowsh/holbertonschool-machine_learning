@@ -1,2 +1,5 @@
 *main.py
 __pycache__
+
+# Jupyter automatic files:
+*.ipynb
