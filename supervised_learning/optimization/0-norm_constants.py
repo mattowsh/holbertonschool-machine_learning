@@ -13,6 +13,6 @@ def normalization_constants(X):
             m: number of data points
             nx: number of features
     """
- 
+
     # Calculates the mean and std deviation:
     return np.mean(X, axis=0), np.std(X, axis=0)
