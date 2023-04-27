@@ -22,13 +22,13 @@ def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
 
     # Calculate the fst and snd moment estimates using the current gradient
     # and the previous estimates:
-    fst_momentum = beta1 * v + (1 - beta1) * grad
-    snd_momentum = beta2 * s + (1 - beta2) * (grad ** 2)
+    fst_momentum = (beta1 * v) + ((1 - beta1) * grad)
+    snd_momentum = (beta2 * s) + ((1 - beta2) * (grad ** 2))
 
     # Calculate bias-correction for each momentum:
     fst_bias_correction = fst_momentum / (1 - (beta1 ** t))
     snd_bias_correction = snd_momentum / (1 - (beta2 ** t))
 
     # Update the variable:
-    all_bias = snd_bias_correction / (np.sqrt(fst_bias_correction) + epsilon)
-    updated_value = var - alpha * all_bias
+    all_bias = fst_bias_correction / (np.sqrt(snd_bias_correction) + epsilon)
+    updated_value = var - (alpha * all_bias)
