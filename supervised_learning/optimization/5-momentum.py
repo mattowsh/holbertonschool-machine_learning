@@ -2,7 +2,7 @@
 """
 Task 5. Momentum
 """
-import numpy as np
+import numpy as n
 
 
 def update_variables_momentum(alpha, beta1, var, grad, v):
