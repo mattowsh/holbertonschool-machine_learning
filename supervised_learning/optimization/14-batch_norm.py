@@ -35,13 +35,13 @@ def create_batch_norm_layer(prev, n, activation):
     # Use tf.constant(): function to create a constant tensor in a
     # TensorFlow graph
     gamma = tf.Variable(
-        tf.constant(1, shape=[n]),
+        tf.constant(1.0, shape=[n]),
         trainable=True,
         name="gamma"
     )
 
     beta = tf.Variable(
-        tf.constant(0, shape=[n]),
+        tf.constant(0.0, shape=[n]),
         trainable=True,
         name="beta"
     )
@@ -51,4 +51,4 @@ def create_batch_norm_layer(prev, n, activation):
                                                  beta, gamma, epsilon)
 
     # Return using the activation function:
-    return eval(activation)(batch_norm_layer)
+    return (activation(batch_norm_layer))
