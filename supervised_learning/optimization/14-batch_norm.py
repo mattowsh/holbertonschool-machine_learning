@@ -17,10 +17,13 @@ def create_batch_norm_layer(prev, n, activation):
 
     # Set general parameters:
     epsilon = 1e-8
-    init = "tf.contrib.layers.variance_scaling_initializer(mode=\"FAN_AVG\")"
+    w_init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
 
     # Create a dense layer:
-    new_layer = tf.layers.Dense(units=n, kernel_initializer=eval(init))(prev)
+    new_layer = tf.layers.Dense(
+        units=n,
+        kernel_initializer=w_init
+        )(prev)
 
     # Computes the mean and variance of a tensor along specified dimensions:
     # axes: the dimensions to reduce over to compute the mean and variance
