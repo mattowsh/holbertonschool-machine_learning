@@ -17,7 +17,7 @@ def create_batch_norm_layer(prev, n, activation):
 
     # Set general parameters:
     epsilon = 1e-8
-    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+    init = "tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")"
 
     # Create a dense layer:
     new_layer = tf.layers.Dense(units=n, kernel_initializer=eval(init))(prev)
