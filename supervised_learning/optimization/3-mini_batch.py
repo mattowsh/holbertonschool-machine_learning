@@ -75,8 +75,8 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                 # Train the model using mini-batches:
                 start = j * batch_size
                 end = (j + 1) * batch_size
-                if end > qty_batches: 
-                    end = qty_batches
+                if end > qty_datapoint: 
+                    end = qty_datapoint
 
                 # Get X_batch and Y_batch from data:
                 X_mini_batch = X_shuffle[start:end]
