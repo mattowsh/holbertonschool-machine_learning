@@ -49,9 +49,11 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
 
         # Calculate the number of batches:
         qty_datapoint = X_train.shape[0]
-        qty_batches = qty_datapoint // batch_size
-        if qty_datapoint % batch_size != 0:
-            qty_batches += 1
+
+        if qty_datapoint % batch_size == 0:
+            qty_batches = qty_datapoint // batch_size
+        else:
+            qty_batches = qty_datapoint // batch_size + 1
 
         # Loop over epochs:
         for i in range(epochs + 1):
