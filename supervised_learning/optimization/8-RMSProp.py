@@ -17,7 +17,8 @@ def create_RMSProp_op(loss, alpha, beta2, epsilon):
     """
 
     # Define the optimizer using gradient descent + RMSProp algorithm:
-    optimizer = tf.train.rmsprop(learningRate=alpha, epsilon=epsilon, decay=beta2)
+    optimizer = tf.train.RMSPropOptimizer(learningRate=alpha, epsilon=epsilon,
+                                          decay=beta2)
 
     # Use minimize: used to update the trainable variables of a neural network
     # by minimizing a given loss function using the Gradient Descent with
