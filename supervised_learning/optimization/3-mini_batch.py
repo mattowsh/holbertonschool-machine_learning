@@ -100,5 +100,5 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                         print("\t\tCost: {}".format(mbatch_cost))
                         print("\t\tAccuracy: {}".format(mbatch_acc))
 
-    # Save the trained model:
-    return saver.save(sess, save_path)
+        # Save the trained model:
+        return saver.save(sess, save_path)
