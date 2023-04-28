@@ -75,7 +75,8 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                 # Train the model using mini-batches:
                 start = j * batch_size
                 end = (j + 1) * batch_size
-                end = qty_batches if (end > qty_batches) else end
+                if end > qty_batches: 
+                    end = qty_batches
 
                 # Get X_batch and Y_batch from data:
                 X_mini_batch = X_shuffle[start:end]
@@ -90,9 +91,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                 # Print information about mini-batches results:
                 if j != 0 and j % 100 == 0:
                     mbatch_cost = sess.run(loss, feed_dict=next_mbatch)
-                    print(mbatch_cost)
                     mbatch_acc = sess.run(accuracy, feed_dict=next_mbatch)
-                    print(mbatch_acc)
 
                     print("\tStep {}:".format(j))
                     print("\t\tCost: {}".format(mbatch_cost))
