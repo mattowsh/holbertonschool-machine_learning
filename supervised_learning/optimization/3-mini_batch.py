@@ -60,9 +60,6 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
             valid_cost = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
             valid_acc = sess.run(accuracy, feed_dict={x: X_valid, y: Y_valid})
 
-            # Shuffle data:
-            X_shuffle, Y_shuffle = shuffle_data(X_train, Y_train)
-
             # Print information:
             print("After {} epochs:".format(i))
             print("\tTraining Cost: {}".format(train_cost))
@@ -70,32 +67,36 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
             print("\tValidation Cost: {}".format(valid_cost))
             print("\tValidation Accuracy: {}".format(valid_acc))
 
-            # Loop over the batches:
-            for j in range(qty_batches):
-                # Train the model using mini-batches:
-                start = j * batch_size
-                end = (j + 1) * batch_size
-                if end > qty_datapoint: 
-                    end = qty_datapoint
+            if i < epochs:
+                # Shuffle data:
+                X_shuffle, Y_shuffle = shuffle_data(X_train, Y_train)
 
-                # Get X_batch and Y_batch from data:
-                X_mini_batch = X_shuffle[start:end]
-                Y_mini_batch = Y_shuffle[start:end]
+                # Loop over the batches:
+                for j in range(qty_batches):
+                    # Train the model using mini-batches:
+                    start = j * batch_size
+                    end = (j + 1) * batch_size
+                    if end > qty_datapoint:
+                        end = qty_datapoint
 
-                # Set the next mini-batch:
-                next_mbatch = {x: X_mini_batch, y: Y_mini_batch}
+                    # Get X_batch and Y_batch from data:
+                    X_mini_batch = X_shuffle[start:end]
+                    Y_mini_batch = Y_shuffle[start:end]
 
-                # Train the model using the mini-batches:
-                sess.run(train_op, feed_dict=next_mbatch)
+                    # Set the next mini-batch:
+                    next_mbatch = {x: X_mini_batch, y: Y_mini_batch}
 
-                # Print information about mini-batches results:
-                if j != 0 and j % 100 == 0:
-                    mbatch_cost = sess.run(loss, feed_dict=next_mbatch)
-                    mbatch_acc = sess.run(accuracy, feed_dict=next_mbatch)
+                    # Train the model using the mini-batches:
+                    sess.run(train_op, feed_dict=next_mbatch)
 
-                    print("\tStep {}:".format(j))
-                    print("\t\tCost: {}".format(mbatch_cost))
-                    print("\t\tAccuracy: {}".format(mbatch_acc))
+                    # Print information about mini-batches results:
+                    if j != 0 and j % 100 == 0:
+                        mbatch_cost = sess.run(loss, feed_dict=next_mbatch)
+                        mbatch_acc = sess.run(accuracy, feed_dict=next_mbatch)
+
+                        print("\tStep {}:".format(j))
+                        print("\t\tCost: {}".format(mbatch_cost))
+                        print("\t\tAccuracy: {}".format(mbatch_acc))
 
     # Save the trained model:
     return saver.save(sess, save_path)
