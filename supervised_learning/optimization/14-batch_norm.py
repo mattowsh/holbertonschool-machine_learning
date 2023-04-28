@@ -51,4 +51,4 @@ def create_batch_norm_layer(prev, n, activation):
                                                  beta, gamma, epsilon)
 
     # Return using the activation function:
-    return activation(batch_norm_layer)
+    return eval(activation)(batch_norm_layer)
