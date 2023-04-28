@@ -54,7 +54,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
             qty_batches += 1
 
         # Loop over epochs:
-        for i in range(epochs):
+        for i in range(epochs + 1):
             train_cost = sess.run(loss, feed_dict={x: X_train, y: Y_train})
             train_acc = sess.run(accuracy, feed_dict={x: X_train, y: Y_train})
             valid_cost = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
