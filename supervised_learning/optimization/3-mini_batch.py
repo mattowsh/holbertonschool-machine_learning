@@ -88,7 +88,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                 sess.run(train_op, feed_dict=next_mbatch)
 
                 # Print information about mini-batches results:
-                if (j != 0) or (j % 100 == 0):
+                if j != 0 and j % 100 == 0:
                     mbatch_cost = sess.run(loss, feed_dict=next_mbatch)
                     mbatch_acc = sess.run(accuracy, feed_dict=next_mbatch)
 
