@@ -21,11 +21,15 @@ def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     """
 
     # Define the operation:
+    # staircase parameter: whether to apply decay in a discrete staircase,
+    # as opposed to continuous, fashion
     lr_decay_op = tf.train.inverse_time_decay(
         learning_date=alpha,
         global_step=global_step,
         decay_step=decay_step,
-        decay_rate=decay_rate)
+        decay_rate=decay_rate,
+        staircase=True
+    )
 
     # Final return:
     return lr_decay_op
