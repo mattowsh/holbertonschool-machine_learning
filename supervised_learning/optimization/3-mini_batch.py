@@ -46,10 +46,8 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
         loss = tf.get_collection("loss")[0]
         # op to perform one pass of gradient descent on the model:
         # train_op = tf.get_collection("")[0]
-        
-        for e in tf.get_collection(c):
-        	print("\t{}".format(e.name))
-        
+
+
 def one_hot(Y, classes):
     """convert an array to a one-hot matrix"""
     oh = np.zeros((Y.shape[0], classes))
@@ -74,7 +72,7 @@ if __name__ == '__main__':
 
     np.random.seed(0)
     save_path = train_mini_batch(X_train, Y_train_oh, X_valid, Y_valid_oh,
-                                 epochs=10, load_path='./graph.ckpt',
+                                 epochs=10, load_path='../data/graph.ckpt',
                                  save_path='./model.ckpt')
 
     
