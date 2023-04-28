@@ -27,15 +27,14 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
         Note: the training function should allow for a smaller final batch
         (a.k.a. use the entire training set) :)
     """
-    
+
     # Load the training model:
     with tf.Session() as sess:
         # Import the metagraph and restore the w values:
         saver = tf.train.import_meta_graph(load_path + ".meta")
         saver.restore(sess, load_path)
         
-        # Get the necessary tensors and operations from the collection
-        # restored:
+        # Get the necessary tensors and operations:
         # placeholder for the input data:
         x = tf.get_collection("x")[0]
         # placeholder for the labels:
@@ -45,7 +44,60 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
         # op to calculate the cost of the model:
         loss = tf.get_collection("loss")[0]
         # op to perform one pass of gradient descent on the model:
-        # train_op = tf.get_collection("")[0]
+        train_op = tf.get_collection("train_op")[0]
+
+        # Calculate the number of batches:
+        qty_datapoint = X_train.shape[0]
+        qty_batches = qty_datapoint // batch_size
+        if qty_datapoint % batch_size != 0:
+            qty_batches += 1
+        
+        # Loop over epochs:
+        for i in range(epochs):
+            train_cost = sess.run(loss, feed_dict={x: X_train, y: Y_train})
+            train_acc = sess.run(accuracy, feed_dict={x: X_train, y: Y_train})
+            valid_cost = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
+            valid_acc = sess.run(accuracy, feed_dict={x: X_valid, y: Y_valid})
+        
+            # Shuffle data:
+            X_shuffle, Y_shuffle = shuffle_data(X_train, Y_train)
+
+            # Print information:
+            print("After {} epochs:".format(i))
+            print("\tTraining Cost: {}".format(train_cost))
+            print("\tTraining Accuracy: {}".format(train_acc))
+            print("\tValidation Cost: {}".format(valid_cost))
+            print("\tValidation Accuracy: {}".format(valid_acc))
+
+            # Loop over the batches:
+            for j in range(qty_batches):
+                # Train the model using mini-batches:
+                start = j * batch_size
+                end = (j + 1) * batch_size
+                end = qty_batches if (end > qty_batches) else end
+    
+                # Get X_batch and Y_batch from data:
+                X_mini_batch = X_shuffle[start:end]
+                Y_mini_batch = Y_shuffle[start:end]
+
+                # Set the next mini-batch:
+                next_mbatch = {x: X_mini_batch, y: Y_mini_batch}
+
+                # Train the model using the mini-batches:
+                sess.run(train_op, feed_dict=next_mbatch)
+
+                # Print information about mini-batches results:
+                if (j != 0) or (j % 100 == 0):
+                    mbatch_cost = sess.run(loss, feed_dict=next_mbatch)
+                    mbatch_acc = sess.run(accuracy, feed_dict=next_mbatch)
+
+                    print("\tStep {}:".format(j))
+                    print("\t\tCost: {}".format(mbatch_cost))
+                    print("\t\tAccuracy: {}".format(mbatch_acc))
+
+    # Save the trained model:
+    return saver.save(sess, save_path)
+
 
 
 def one_hot(Y, classes):
