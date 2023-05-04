@@ -26,7 +26,8 @@ def sensitivity(confusion):
     # We obtain a 1D vector result of the sum along the rows:
     TP = np.sum(confusion * id_matrix, axis=1)
 
-    # Get ALL positives (P), adding all values in confusion:
+    # Get ALL positives (P), adding all values in confusion. Count the number
+	# of true positives for EACH class
     # We obtain a 1D vector result of the sum along the rows:
     P = np.sum(confusion, axis=1)
 
