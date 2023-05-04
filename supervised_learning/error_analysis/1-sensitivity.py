@@ -15,7 +15,7 @@ def sensitivity(confusion):
     Return: a numpy.ndarray (classes,) containing the sensitivity of each class
     """
 
-    # sensibility == recall (RC) == true positive ratio (TPR):
+    # sensivility (SN) == recall (RC) == true positive ratio (TPR):
     # the number of correct positive predictions (TP) divided by the total
     # number of positives (P) => TP / P == TP / (TP + FN)
 
