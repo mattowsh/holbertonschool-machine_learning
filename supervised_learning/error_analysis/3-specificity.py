@@ -36,3 +36,4 @@ def specificity(confusion):
 
     # Calculate all N = TN + FP
     return TN / (TN + FP)
+    return TN / (TN + FP)
