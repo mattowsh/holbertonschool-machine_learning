@@ -31,7 +31,6 @@ def l2_reg_cost(cost, lambtha, weights, L, m):
         l2_cost += np.sum(current_W ** 2)
 
     l2_cost *= (lambtha / (2 * m))
-
     total_cost = cost + l2_cost
 
     return total_cost
