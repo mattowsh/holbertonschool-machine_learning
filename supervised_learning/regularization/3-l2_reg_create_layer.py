@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Task 2. L2 Regularization Cost
+Task 1. Gradient Descent with L2 Regularization
 """
 import tensorflow as tf
 
