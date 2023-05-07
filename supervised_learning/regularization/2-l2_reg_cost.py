@@ -2,7 +2,6 @@
 """
 Task 1. Gradient Descent with L2 Regularization
 """
-import numpy as np
 import tensorflow as tf
 
 
