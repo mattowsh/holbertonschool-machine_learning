@@ -2,8 +2,7 @@
 """
 Task 0. Sequential
 """
-import tensorflow as tf
-from tensorflow import keras
+import tensorflow.keras as K
 
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
@@ -22,21 +21,21 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     """
 
     # Create the model structure:
-    model = keras.Sequential()
+    model = K.Sequential()
 
     # Set the deep learning regularization technique:
-    regularizer = keras.regularizers.L2(lambtha)
+    regularizer = K.regularizers.L2(lambtha)
 
     # Define the model architecture contemplating all layers, nodes and
     # activation functions:
     for i in range(len(layers)):
-        model.add(keras.layers.Dense(layers[i],
+        model.add(K.layers.Dense(layers[i],
                                      input_shape=(nx, ),
                                      activation=activations[i],
                                      kernel_regularizer=regularizer))
 
         # Apply Dropout only in hidden layers, never in output layer:
         if i < (len(layers) - 1):
-            model.add(keras.layers.Dropout(1 - keep_prob))
+            model.add(K.layers.Dropout(1 - keep_prob))
 
     return model
