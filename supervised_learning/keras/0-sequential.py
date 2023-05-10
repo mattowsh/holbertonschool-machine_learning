@@ -29,13 +29,17 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     # Define the model architecture contemplating all layers, nodes and
     # activation functions:
     for i in range(len(layers)):
-        model.add(K.layers.Dense(layers[i],
-                                 input_shape=(nx,),
-                                 activation=activations[i],
-                                 kernel_regularizer=regularizer))
-
-        # Apply Dropout only in hidden layers, never in output layer:
-        if i < (len(layers) - 1):
+        if i == 0:
+            # First layer: receive nx input features:
+            model.add(K.layers.Dense(layers[i],
+                                     input_shape=(nx,),
+                                     activation=activations[i],
+                                     kernel_regularizer=regularizer))
+        else:
+            # Add all other hidden layers with Dropout and L2 techniques:
             model.add(K.layers.Dropout(1 - keep_prob))
+            model.add(K.layers.Dense(layers[i],
+                                     activation=activations[i],
+                                     kernel_regularizer=regularizer))
 
     return model
