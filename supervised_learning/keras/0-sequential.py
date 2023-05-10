@@ -30,9 +30,9 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     # activation functions:
     for i in range(len(layers)):
         model.add(K.layers.Dense(layers[i],
-                                     input_shape=(nx, ),
-                                     activation=activations[i],
-                                     kernel_regularizer=regularizer))
+                                 input_shape=(nx,),
+                                 activation=activations[i],
+                                 kernel_regularizer=regularizer))
 
         # Apply Dropout only in hidden layers, never in output layer:
         if i < (len(layers) - 1):
