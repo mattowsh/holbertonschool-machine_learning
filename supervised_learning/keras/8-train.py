@@ -85,9 +85,7 @@ def train_model(network, data, labels, batch_size, epochs,
             custom_callback = []
 
         custom_callback.append(
-            K.callbacks.ModelCheckpoint(filepath,
-                                        save_best_only=True,
-                                        save_freq="epoch"))
+            K.callbacks.ModelCheckpoint(filepath, save_best_only=True))
 
     history = network.fit(x=data,
                           y=labels,
