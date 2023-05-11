@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Task 2. Optimize
+Task 3. One Hot
 """
 import tensorflow.keras as K
 
