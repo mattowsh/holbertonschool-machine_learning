@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Task 7. Learning Rate Decay
-(based on 6-train.py)
+Task 8. Save Only the Best
+(based on 7-train.py)
 """
 import tensorflow.keras as K
 
@@ -9,7 +9,7 @@ import tensorflow.keras as K
 def train_model(network, data, labels, batch_size, epochs,
                 validation_data=None, early_stopping=False, patience=0,
                 learning_rate_decay=False, alpha=0.1, decay_rate=1,
-                verbose=True, shuffle=False):
+                save_best=False, filepath=None, verbose=True, shuffle=False):
     """
     Trains a model using mini-batch gradient descent
 
@@ -38,6 +38,12 @@ def train_model(network, data, labels, batch_size, epochs,
 
         - alpha: initial learning rate
         - decay_rate: decay rate
+
+        - save_best: boolean indicating whether to save the model after each
+        epoch if it is the best
+            Note: a model is considered the best if its validation loss is the
+            lowest that the model has obtained
+        - filepath: the file path where the model should be saved
 
         - verbose: boolean that determines if output should be printed during
         training
@@ -73,6 +79,15 @@ def train_model(network, data, labels, batch_size, epochs,
                 K.callbacks.LearningRateScheduler(learning_rate, verbose=1))
     else:
         custom_callback = None
+
+    if save_best:
+        if custom_callback is None:
+            custom_callback = []
+
+        custom_callback.append(
+            K.callbacks.ModelCheckpoint(filepath,
+                                        save_best_only=True,
+                                        save_freq="epoch"))
 
     history = network.fit(x=data,
                           y=labels,
