@@ -34,6 +34,6 @@ def load_config(filename):
         json_model = file.read()
 
     # Create the Keras model:
-    loaded_model = K.model_from_json(json_model)
+    loaded_model = K.models.model_from_json(json_model)
 
     return loaded_model
