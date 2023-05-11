@@ -7,7 +7,8 @@ import tensorflow.keras as K
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """
-    Function to build a neural network with the Keras library
+    Function to build a neural network with the Keras library without
+    Input class
 
         nx: number of input features to the network
         layers: list containing the number of nodes in each layer of the
@@ -24,7 +25,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     model = K.Sequential()
 
     # Set the deep learning regularization technique:
-    regularizer = K.regularizers.L2(lambtha)
+    regularizer = K.regularizers.l2(lambtha)
 
     # Define the model architecture contemplating all layers, nodes and
     # activation functions:

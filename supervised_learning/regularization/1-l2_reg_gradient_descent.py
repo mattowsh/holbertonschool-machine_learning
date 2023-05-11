@@ -32,23 +32,23 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
     # Backpropagation
     for i in range(L, 0, -1):
         A_current, A_prev = cache["A" + str(i)], cache["A" + str(i - 1)]
-        # W_current, W_prev = weights["W" + str(i)], weights["W" + str(i - 1)]
-        dZ = grads["dz" + str(i)]
 
         if i == L:
-            grads[dZ] = cache[A_current] - Y
+            dz_current = grads["dz" + str(i)]
+            dz_current = A_current - Y
         else:
-            dZ = np.dot(W_prev.T, dZ) * (1 - np.power(A, 2))
+            dz_prev = grads["dz" + str(i + 1)]
+            dz_current = grads["dz" + str(i)]
+            dz_current = np.matmul(W_current.transpose(), dz_prev) * (A_current * (1 - A_current))
 
-        dW = (1 / m) * np.dot(dZ, A_prev.T) + (lambtha / m) * W_current
-        db = (1 / m) * np.sum(dZ, axis=1, keepdims=True)
-
-        grads["dW" + str(i)], grads["db" + str(i)] = dW, db
-
-    # Update weights and biases
-    for i in range(1, L + 1):
+        # Update weights and biases
         W_current = weights["W" + str(i)]
         b_current = weights["b" + str(i)]
+
+        dW = (1 / m) * (np.matmul(dz_current, A_prev.transpose()) + (lambtha * W_current))
+        db = (1 / m) * (np.sum(dz_current, axis=1, keepdims=True) + (lambtha * b_current))
+
+        grads["dW" + str(i)], grads["db" + str(i)] = dW, db
         
         W_current -= (alpha * dW)
         b_current -= (alpha * db)
