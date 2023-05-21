@@ -49,8 +49,10 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
             for w in range(w_prev):
                 for c in range(c_prev):
                     # Get the corners of the current slice:
-                    v_start, v_end = (h * sh), (v_start + kh)
-                    h_start, h_end = (w * sw), (h_start + kw)
+                    v_start = h * sh
+                    v_end = v_start + kh
+                    h_start = w * sw
+                    h_end = h_start + kw
 
                     # Calculate the gradients using the pooling mode:
                     if mode == "max":
