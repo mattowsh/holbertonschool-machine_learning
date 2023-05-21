@@ -33,7 +33,7 @@ def lenet5(X):
     """
 
     # Initializate kernel:
-    kernel_init = K.contrib.layers.variance_scaling_initializer()
+    kernel_init = K.initializers.he_normal()
 
     # Create the layers one by one
     # (take the layers output in the process...):
@@ -41,10 +41,10 @@ def lenet5(X):
         filters=6,
         kernel_size=(5, 5),
         padding="same",
-        activation=K.nn.relu,
+        activation=K.activations.relu,
         kernel_initializer=kernel_init
     )
-    result_1 = C1(x)
+    result_1 = C1(X)
 
     P2 = K.layers.MaxPooling2D(
         pool_size=(2, 2),
@@ -56,7 +56,7 @@ def lenet5(X):
         filters=16,
         kernel_size=(5, 5),
         padding="valid",
-        activation=K.nn.relu,
+        activation=K.activations.relu,
         kernel_initializer=kernel_init
     )
     result_3 = C3(result_2)
@@ -72,14 +72,14 @@ def lenet5(X):
 
     F5 = K.layers.Dense(
         120,
-        activation=K.nn.relu,
+        activation=K.activations.relu,
         kernel_initializer=kernel_init
     )
     result_5 = F5(flatten_result_4)
 
     F6 = K.layers.Dense(
         84,
-        activation=K.nn.relu,
+        activation=K.activations.relu,
         kernel_initializer=kernel_init
     )
     result_6 = F6(result_5)
