@@ -64,7 +64,7 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
                     elif mode == "avg":
                         # Compute the average value of the window:
                         mask = np.ones((kh, kw))
-                        da = da / (kh * kw)
+                        da /= (kh * kw)
                     else:
                         return
 
