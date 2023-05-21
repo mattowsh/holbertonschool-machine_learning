@@ -45,8 +45,8 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
 
     # Perform backpropagation:
     for i in range(m):
-        for h in range(h_prev):
-            for w in range(w_prev):
+        for h in range(h_new):
+            for w in range(w_new):
                 for c in range(c_prev):
                     # Get the corners of the current slice:
                     v_start = h * sh
@@ -56,15 +56,18 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
 
                     # Calculate the gradients using the pooling mode:
                     if mode == "max":
+                        da = dA[i, h, w, c]
+
                         # Find the position of the maximum value in the window:
                         pool = A_prev[i, v_start:v_end, h_start:h_end, c]
                         mask = (pool == np.max(pool))
                     elif mode == "avg":
                         # Compute the average value of the window:
-                        mask = np.ones((kh, kw)) / (kh * kw)
+                        mask = np.ones((kh, kw))
+                        da = da / (kh * kw)
+                    else:
+                        return
 
-                    dA_prev[i, v_start:v_end, h_start:h_end, c] += (
-                        mask * dA[i, h, w, c]
-                        )
+                    dA_prev[i, v_start:v_end, h_start:h_end, c] += (mask * da)
 
     return dA_prev
