@@ -120,8 +120,8 @@ class Yolo:
             b_y = (self.sigmoid(-t_y) + gc_y) / grid_h
 
             # 7. Boundary boxes: get the dimensions:
-            b_h = anchor_h * np.exp(t_h) / self.model.input.shape[1].value
-            b_w = anchor_w * np.exp(t_w) / self.model.input.shape[2].value
+            b_h = anchor_h * np.exp(t_h) / self.model.input.shape[2].value
+            b_w = anchor_w * np.exp(t_w) / self.model.input.shape[1].value
 
             # 8. Store boxes coordinates and dimensions:
             # top-left coordinate: represents the upper-left corner of the
