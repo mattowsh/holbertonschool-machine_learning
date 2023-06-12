@@ -137,7 +137,7 @@ class Yolo:
             box[:, :, :, 0] = x1
             box[:, :, :, 1] = y1
             box[:, :, :, 2] = x2
-            box[:, :, :, 0] = y2
+            box[:, :, :, 3] = y2
             boxes.append(box)
 
             # 9. Get the box confidences for each output:
