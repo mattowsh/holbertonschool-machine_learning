@@ -90,7 +90,7 @@ class Yolo:
         # Process each prediction, stored in outputs list:
         for i, predict in enumerate(outputs):
             # 1. Get dimensions of the current prediction:
-            grid_h, grid_w, anchor_boxes, _ = predict
+            grid_h, grid_w, anchor_boxes, _ = predict.shape
 
             # 2. Get each prediction dimension:
             t_x = predict[:, :, :, 0]
