@@ -87,7 +87,7 @@ class Yolo:
         full_anchor_w = self.anchors[:, :, 0]
         full_anchor_h = self.anchors[:, :, 1]
 
-        # Process each prediction, stored in outputs list
+        # Process each prediction, stored in outputs list:
         for i, predict in enumerate(outputs):
             # 1. Get dimensions of the current prediction:
             grid_h, grid_w, anchor_boxes, _ = predict
@@ -148,4 +148,4 @@ class Yolo:
             ax = predict[:, :, :, 5:]
             box_class_probs.append(self.sigmoid(ax))
 
-        return boxes, box_confidences, box_confidences
+        return boxes, box_confidences, box_class_probs
