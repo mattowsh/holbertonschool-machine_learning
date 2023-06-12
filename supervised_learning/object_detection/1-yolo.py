@@ -99,13 +99,11 @@ class Yolo:
             t_h = predict[:, :, :, 3]
 
             # 3. Reshape anchor box measures to match grid dimensions:
-            current_anchor_h = np.tile(full_anchor_h[i], grid_h)
-            current_anchor_h = current_anchor_h.reshape(grid_h, 1,
-                                                        len(full_anchor_h[i]))
+            anchor_h = np.tile(full_anchor_h[i], grid_h)
+            anchor_h = anchor_h.reshape(grid_h, 1, len(full_anchor_h[i]))
 
-            current_anchor_w = np.tile(full_anchor_w[i], grid_w)
-            current_anchor_w = current_anchor_w.reshape(grid_w, 1,
-                                                        len(full_anchor_w[i]))
+            anchor_w = np.tile(full_anchor_w[i], grid_w)
+            anchor_w = anchor_w.reshape(grid_w, 1, len(full_anchor_w[i]))
 
             # 4. Create grid coordinates for positioning boundary boxes:
             gc_x = np.tile(np.arange(grid_w), grid_h).reshape(grid_w,
@@ -122,8 +120,8 @@ class Yolo:
             b_y = (self.sigmoid(-t_y) + gc_y) / grid_h
 
             # 7. Boundary boxes: get the dimensions:
-            b_h = current_anchor_h * np.exp(t_h)
-            b_w = current_anchor_w * np.exp(t_w)
+            b_h = anchor_h * np.exp(t_h) / self.model.input.shape[1].value
+            b_w = anchor_w * np.exp(t_w) / self.model.input.shape[2].value
 
             # 8. Store boxes coordinates and dimensions:
             # top-left coordinate: represents the upper-left corner of the
