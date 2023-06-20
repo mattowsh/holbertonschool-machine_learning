@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Task 1. Process Outputs
+Task 2. Filter Boxes
 """
 import tensorflow.keras as K
 import numpy as np
@@ -149,3 +149,46 @@ class Yolo:
             box_class_probs.append(self.sigmoid(ax))
 
         return boxes, box_confidences, box_class_probs
+
+    def filter_boxes(self, boxes, box_confidences, box_class_probs):
+        """
+        Performes the filtering boxes process, useful to remove redundant or
+        overlapping bounding boxes and select the most confident predictions
+        
+        - boxes: a list of numpy.ndarrays (grid_height, grid_width,
+        anchor_boxes, 4) containing the processed boundary boxes for each
+        output, respectively
+        - box_confidences: a list of numpy.ndarrays (grid_height, grid_width,
+        anchor_boxes, 1) containing the processed box confidences for each
+        output, respectively
+        - box_class_probs: a list of numpy.ndarrays (grid_height, grid_width,
+        anchor_boxes, classes) containing the processed box class probabilities
+        for each output, respectively
+        
+        Returns:
+            a tuple of (filtered_boxes, box_classes, box_scores):
+                - filtered_boxes: a numpy.ndarray of shape (?, 4) containing
+                all of the filtered bounding boxes
+                - box_classes: a numpy.ndarray of shape (?,) containing the
+                class number that each box in filtered_boxes predicts,
+                respectively
+                - box_scores: a numpy.ndarray of shape (?) containing the box
+                scores for each box in filtered_boxes, respectively
+        """
+        
+        # 1. To simplify the process, we will flatten the arrays:
+        flatten_boxes = np.concatenate(boxes, axis=0)
+        flatten_confidences = np.concatenate(box_confidences, axis=0)
+        flatten_class_probs = np.concatenate(box_class_probs, axis=0)
+        
+        # 2. Calculate the all box scores: box confidence * class probability
+        scores = flatten_confidences * flatten_class_probs
+
+        # 3. Find the index of the classes that exceed the threshold value:
+        t_filter = scores >= self.class_t
+        idx_boxes  = np.where(t_filter)
+        print(idx_boxes)
+
+        # 4. Get the correct information to be returned:
+        filtered_boxes = flatten_boxes[idx_boxes]
+
