@@ -187,8 +187,8 @@ class Yolo:
         # 3. Find the index of the classes that exceed the threshold value:
         t_filter = scores >= self.class_t
         idx_boxes  = np.where(t_filter)
-        print(idx_boxes)
 
         # 4. Get the correct information to be returned:
         filtered_boxes = flatten_boxes[idx_boxes]
+        return idx_boxes
 
