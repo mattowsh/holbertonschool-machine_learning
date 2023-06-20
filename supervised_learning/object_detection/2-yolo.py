@@ -185,10 +185,10 @@ class Yolo:
         scores = flatten_confidences * flatten_class_probs
 
         # 3. Find the index of the classes that exceed the threshold value:
-        t_filter = scores >= self.class_t
-        idx_boxes  = np.where(t_filter)
+        idx_boxes  = np.where(scores >= self.class_t)
 
         # 4. Get the correct information to be returned:
         filtered_boxes = flatten_boxes[idx_boxes]
-        return np.zeros(5), np.zeros(5), np.zeros(5)
+        
+        return (filtered_boxes, np.zeros(5), np.zeros(5))
 
