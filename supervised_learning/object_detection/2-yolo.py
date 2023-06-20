@@ -190,5 +190,5 @@ class Yolo:
 
         # 4. Get the correct information to be returned:
         filtered_boxes = flatten_boxes[idx_boxes]
-        return idx_boxes
+        return np.zeros(5), np.zeros(5), np.zeros(5)
 
