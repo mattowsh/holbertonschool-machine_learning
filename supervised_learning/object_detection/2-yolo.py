@@ -154,7 +154,7 @@ class Yolo:
         """
         Performes the filtering boxes process, useful to remove redundant or
         overlapping bounding boxes and select the most confident predictions
-        
+
         - boxes: a list of numpy.ndarrays (grid_height, grid_width,
         anchor_boxes, 4) containing the processed boundary boxes for each
         output, respectively
@@ -164,7 +164,7 @@ class Yolo:
         - box_class_probs: a list of numpy.ndarrays (grid_height, grid_width,
         anchor_boxes, classes) containing the processed box class probabilities
         for each output, respectively
-        
+
         Returns:
             a tuple of (filtered_boxes, box_classes, box_scores):
                 - filtered_boxes: a numpy.ndarray of shape (?, 4) containing
@@ -175,12 +175,12 @@ class Yolo:
                 - box_scores: a numpy.ndarray of shape (?) containing the box
                 scores for each box in filtered_boxes, respectively
         """
-        
+
         # 1. To simplify the process, we will flatten the arrays:
         flatten_boxes = np.concatenate(boxes, axis=0)
         flatten_confidences = np.concatenate(box_confidences, axis=0)
         flatten_class_probs = np.concatenate(box_class_probs, axis=0)
-        
+
         # 2. Calculate the all box scores: box confidence * class probability
         scores = flatten_confidences * flatten_class_probs
 
@@ -189,6 +189,7 @@ class Yolo:
 
         # 4. Get the correct information to be returned:
         filtered_boxes = flatten_boxes[idx_boxes]
-        
-        return (filtered_boxes, np.zeros(5), np.zeros(5))
+        box_classes = flatten_confidences[idx_boxes]
+        box_scores = scores[idx_boxes]
 
+        return (filtered_boxes, box_classes, box_scores)
