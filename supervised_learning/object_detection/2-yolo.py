@@ -176,20 +176,31 @@ class Yolo:
                 scores for each box in filtered_boxes, respectively
         """
 
-        # 1. To simplify the process, we will flatten the arrays:
-        flatten_boxes = np.concatenate(boxes, axis=0)
-        flatten_confidences = np.concatenate(box_confidences, axis=0)
-        flatten_class_probs = np.concatenate(box_class_probs, axis=0)
+        filtered_boxes, box_classes, box_scores = [], [], []
 
-        # 2. Calculate the all box scores: box confidence * class probability
-        scores = flatten_confidences * flatten_class_probs
+        for i, box in enumerate(boxes):
+            current_conf = box_confidences[i]
+            current_prob = box_class_probs[i]
 
-        # 3. Find the index of the classes that exceed the threshold value:
-        idx_boxes  = np.where(scores >= self.class_t)
+            # 1. Get the score for each bounding box:
+            box_score = current_conf * current_prob
 
-        # 4. Get the correct information to be returned:
-        filtered_boxes = flatten_boxes[idx_boxes]
-        box_classes = flatten_confidences[idx_boxes]
-        box_scores = scores[idx_boxes]
+            # 2. Get the maximum values of classes (get the index of) and in
+            # its score:
+            classes_idx = np.argmax(box_score, axis=-1)
+            classes_score = np.max(box_score, axis=-1)
 
-        return (filtered_boxes, box_classes, box_scores)
+            # 3. Set the filter value:
+            mask = np.where(classes_score >= self.class_t)
+
+            # 4. Get all filtered classes and probabilities:
+            filtered_boxes.append(box[mask])
+            box_classes.append(classes_idx[mask])
+            box_scores.append(classes_score[mask])
+
+        # 5. Turn any list in a np.array:
+        filtered_boxes = np.concatenate(filtered_boxes)
+        box_classes = np.concatenate(box_classes)
+        box_scores = np.concatenate(box_scores)
+
+        return filtered_boxes, box_classes, box_scores
